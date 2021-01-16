@@ -35,14 +35,14 @@ async function run(options?: RunOptions): Promise<void> {
   dotenv.config();
   // ? Setup Options
   const commandsFolder = path.resolve(options?.commandsFolder || path.join(__dirname, 'commands'));
-  const prefix = options?.prefix ?? '!';
+  const prefix = options?.prefix ?? '!dkb ';
 
   // ? Initialize bot
   const commands = await readCommands(commandsFolder);
 
   bot.on('message', (msg) => {
     if (!msg.content.startsWith(prefix)) return;
-    const tokens = msg.content.slice(1).split(' ');
+    const tokens = msg.content.slice(prefix.length).split(' ');
     const slug = tokens.shift();
     const command = commands[slug ?? ''];
     if (command !== undefined) {
