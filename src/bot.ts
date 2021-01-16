@@ -34,7 +34,7 @@ async function readCommands(folder: string): Promise<{ [key: string]: Command | 
 async function run(options?: RunOptions): Promise<void> {
   dotenv.config();
   // ? Setup Options
-  const commandsFolder = path.resolve(options?.commandsFolder || path.join('src', 'commands'));
+  const commandsFolder = path.resolve(options?.commandsFolder || path.join(__dirname, 'commands'));
   const prefix = options?.prefix ?? '!';
 
   // ? Initialize bot
